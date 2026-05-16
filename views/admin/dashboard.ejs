@@ -1,0 +1,11 @@
+<%- include('../partials/admin-header') %>
+<h1>Dashboard</h1>
+<section class="admin-cards">
+  <article><span><%= stats ? stats.total_views : 0 %></span><p>Tổng lượt view website</p></article>
+  <article><span><%= bookCount.total %></span><p>Sách</p></article>
+  <article><span><%= userCount.total %></span><p>Người dùng</p></article>
+  <article><span><%= commentCount.total %></span><p>Bình luận</p></article>
+  <article><span><%= contactCount.total %></span><p>Liên hệ</p></article>
+  <article><span><%= categoryCount.total %></span><p>Category</p></article>
+</section>
+<%- include('../partials/admin-footer') %>

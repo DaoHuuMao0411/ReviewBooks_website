@@ -1,0 +1,34 @@
+<%- include('../partials/admin-header') %>
+<h1>Quản lý category</h1>
+<p class="admin-note">Category được quản lý trong database. Khi tạo/sửa sách, admin chỉ được chọn một category có sẵn.</p>
+<% if (error) { %><p class="form-error"><%= error %></p><% } %>
+
+<form class="admin-form compact-admin-form" action="/admin/categories/create" method="POST" data-validate-form>
+  <label>Tên category mới
+    <input type="text" name="name" required minlength="2" maxlength="80" placeholder="Ví dụ: Tâm lý học">
+  </label>
+  <button type="submit">Thêm category</button>
+</form>
+
+<table class="admin-table">
+  <thead><tr><th>ID</th><th>Category</th><th>Số sách đang dùng</th><th>Ngày tạo</th><th>Thao tác</th></tr></thead>
+  <tbody>
+    <% categories.forEach(function(category) { %>
+      <tr>
+        <td><%= category.id %></td>
+        <td><%= category.name %></td>
+        <td><%= category.book_count %></td>
+        <td><%= new Date(category.created_at).toLocaleString('vi-VN') %></td>
+        <td>
+          <div class="table-actions">
+            <a class="table-link" href="/admin/categories/<%= category.id %>/edit">Sửa</a>
+            <form action="/admin/categories/<%= category.id %>/delete" method="POST" data-confirm="Bạn chắc chắn muốn xóa category '<%= category.name %>'? Nếu category đang có sách, các sách đó sẽ được chuyển sang category khác.">
+              <button class="danger-button" type="submit">Xóa</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<%- include('../partials/admin-footer') %>

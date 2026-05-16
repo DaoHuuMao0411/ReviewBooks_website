@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+<main class="page-shell">
+  <section class="page-heading">
+    <p class="eyebrow">Library</p>
+    <h1>Thư viện sách</h1>
+    <p>Tìm kiếm, lọc thể loại và đọc review chi tiết của từng cuốn sách.</p>
+  </section>
+
+  <form class="filter-bar" action="/books" method="GET">
+    <input type="search" name="search" value="<%= search %>" placeholder="Tên sách, tác giả hoặc mô tả">
+    <select name="category">
+      <option value="">Tất cả thể loại</option>
+      <% categories.forEach(function(item) { %>
+        <option value="<%= item %>" <%= category === item ? 'selected' : '' %>><%= item %></option>
+      <% }) %>
+    </select>
+    <select name="sort">
+      <option value="newest" <%= sort === 'newest' ? 'selected' : '' %>>Mới nhất</option>
+      <option value="rating" <%= sort === 'rating' ? 'selected' : '' %>>Đánh giá cao</option>
+      <option value="title" <%= sort === 'title' ? 'selected' : '' %>>Tên A-Z</option>
+    </select>
+    <button type="submit">Lọc</button>
+  </form>
+
+  <section class="library-grid">
+    <% books.forEach(function(book) { %>
+      <article class="library-card">
+        <a href="/books/<%= book.id %>"><img src="<%= book.cover_image || '/images/books/default-book.svg' %>" alt="Bìa sách <%= book.title %>"></a>
+        <div>
+          <p class="category-tag"><%= book.category %></p>
+          <h2><a href="/books/<%= book.id %>"><%= book.title %></a></h2>
+          <p><strong>Tác giả:</strong> <%= book.author %></p>
+          <p><%= book.description %></p>
+          <p>★ <%= book.average_rating %> · <%= book.comment_count %> bình luận</p>
+        </div>
+      </article>
+    <% }) %>
+  </section>
+</main>
+<%- include('../partials/pagination') %>
+<%- include('../partials/footer') %>

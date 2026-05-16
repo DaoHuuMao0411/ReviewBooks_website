@@ -1,0 +1,24 @@
+<%- include('../partials/admin-header') %>
+<div class="admin-title-row">
+  <h1>Quản lý sách</h1>
+  <a class="admin-button" href="/admin/books/create">Thêm sách</a>
+</div>
+<table class="admin-table">
+  <thead><tr><th>ID</th><th>Tên sách</th><th>Tác giả</th><th>Thể loại</th><th>Thao tác</th></tr></thead>
+  <tbody>
+    <% books.forEach(function(book) { %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.category %></td>
+        <td class="table-actions">
+          <a class="table-link" href="/admin/books/<%= book.id %>/edit">Sửa</a>
+          <form action="/admin/books/<%= book.id %>/delete" method="POST" data-confirm="Bạn chắc chắn muốn xóa sách '<%= book.title %>'? Các bình luận của sách này cũng sẽ bị xóa."><button type="submit">Xóa</button></form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<%- include('../partials/pagination') %>
+<%- include('../partials/admin-footer') %>

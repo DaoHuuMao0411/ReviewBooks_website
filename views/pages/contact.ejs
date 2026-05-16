@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+<main class="page-shell contact-page">
+  <section class="contact-about-section">
+    <p class="eyebrow">About / Contact</p>
+    <h1>Giới thiệu về Book Review Page</h1>
+    <p>
+      Book Review Page là website local giúp người dùng xem danh sách sách, đọc review, gửi bình luận và đánh giá.
+      Website được xây dựng bằng HTML, CSS, JavaScript, EJS, Express và MySQL local.
+    </p>
+
+    <div class="contact-info-grid">
+      <article>
+        <h2>Mục tiêu</h2>
+        <p>
+          Tạo không gian chia sẻ cảm nhận đọc sách, hỗ trợ người đọc chọn sách phù hợp và giúp quản trị viên
+          quản lý nội dung dễ dàng.
+        </p>
+      </article>
+      <article>
+        <h2>Thông tin liên hệ</h2>
+        <p>Email: contact@bookreview.local</p>
+        <p>Địa chỉ: Localhost, máy tính cá nhân</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="contact-form-section" id="contact-form">
+    <p class="eyebrow">Feedback</p>
+    <h2>Gửi ý kiến liên hệ</h2>
+    <% if (sent) { %><p class="form-success">Đã gửi liên hệ thành công.</p><% } %>
+    <% if (error) { %><p class="form-error"><%= error %></p><% } %>
+    <form class="standard-form" action="/contact" method="POST" data-validate-form>
+      <label>Họ tên
+        <input type="text" name="name" required value="<%= (formData && formData.name) || '' %>">
+      </label>
+
+      <% if (currentUser) { %>
+        <p class="form-note">Email liên hệ sẽ dùng email tài khoản: <strong><%= currentUser.email %></strong></p>
+      <% } else { %>
+        <label>Email
+          <input type="email" name="email" required value="<%= (formData && formData.email) || '' %>">
+        </label>
+      <% } %>
+
+      <label>Tiêu đề
+        <input type="text" name="subject" value="<%= (formData && formData.subject) || '' %>">
+      </label>
+      <label>Nội dung
+        <textarea name="message" rows="6" required minlength="5"><%= (formData && formData.message) || '' %></textarea>
+      </label>
+      <button type="submit">Gửi liên hệ</button>
+    </form>
+  </section>
+</main>
+<%- include('../partials/footer') %>

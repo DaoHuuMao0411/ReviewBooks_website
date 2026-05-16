@@ -1,0 +1,12 @@
+<%- include('../partials/admin-header') %>
+<h1>Ý kiến liên hệ</h1>
+<table class="admin-table">
+  <thead><tr><th>Họ tên</th><th>Email</th><th>Tiêu đề</th><th>Nội dung</th><th>Thời gian</th></tr></thead>
+  <tbody>
+    <% contacts.forEach(function(contact) { %>
+      <tr><td><%= contact.name %></td><td><%= contact.email %></td><td><%= contact.subject %></td><td><%= contact.message %></td><td><%= new Date(contact.created_at).toLocaleString('vi-VN') %></td></tr>
+    <% }) %>
+  </tbody>
+</table>
+<%- include('../partials/pagination') %>
+<%- include('../partials/admin-footer') %>

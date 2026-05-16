@@ -1,0 +1,20 @@
+<%- include('../partials/admin-header') %>
+<h1><%= mode === 'create' ? 'Thêm sách' : 'Sửa sách' %></h1>
+<% if (error) { %><p class="form-error"><%= error %></p><% } %>
+<form class="admin-form" data-validate-form action="<%= mode === 'create' ? '/admin/books/create' : '/admin/books/' + book.id + '/edit' %>" method="POST" <%= mode === 'edit' ? 'data-confirm="Bạn chắc chắn muốn cập nhật sách này?"' : '' %>>
+  <label>Tên sách<input name="title" minlength="2" maxlength="200" value="<%= book.title || '' %>" required></label>
+  <label>Tác giả<input name="author" minlength="2" maxlength="150" value="<%= book.author || '' %>" required></label>
+  <label>Thể loại
+    <select name="category" required>
+      <option value="">-- Chọn thể loại --</option>
+      <% categories.forEach(function(categoryItem) { %>
+        <option value="<%= categoryItem %>" <%= book.category === categoryItem ? 'selected' : '' %>><%= categoryItem %></option>
+      <% }) %>
+    </select>
+  </label>
+  <label>Đường dẫn ảnh bìa<input name="cover_image" maxlength="255" value="<%= book.cover_image || '/images/books/default-book.svg' %>"></label>
+  <label>Mô tả<textarea name="description" rows="4" maxlength="3000"><%= book.description || '' %></textarea></label>
+  <label>Nội dung review<textarea name="review_content" rows="8" maxlength="6000"><%= book.review_content || '' %></textarea></label>
+  <button type="submit">Lưu</button>
+</form>
+<%- include('../partials/admin-footer') %>

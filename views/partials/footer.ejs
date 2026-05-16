@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div>
+    <h3>Book Review Page</h3>
+    <p>Descriptions</p>
+    <div class="social-squares" aria-label="social icons">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div>
+    <h3>Main Page</h3>
+    <a href="/contact">About & Contact</a>
+    <a href="/books">Books</a>
+    <a href="/reviews">Reviews</a>
+  </div>
+  <div>
+    <h3>Help</h3>
+    <a href="/contact">Gửi góp ý</a>
+    <a href="/books">Tìm sách</a>
+    <a href="/reviews">Xem review</a>
+    <% if (currentUser && currentUser.role === 'admin') { %>
+      <a href="/admin/dashboard">Admin</a>
+    <% } %>
+  </div>
+</footer>
+</body>
+</html>

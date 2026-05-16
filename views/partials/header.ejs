@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> | Book Review Page</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/main.js" defer></script>
+  <script src="/js/popup.js" defer></script>
+  <script src="/js/validation.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="logo-pill" href="/" aria-label="Book Review Page home">
+    <img src="/images/logo.svg" alt="Book Review Page logo">
+  </a>
+
+  <button class="menu-toggle" type="button" data-menu-toggle aria-label="Mở menu">☰</button>
+
+  <nav class="main-nav" data-main-menu>
+    <a class="<%= currentPath === '/' ? 'active' : '' %>" href="/">MainPage</a>
+    <a class="<%= currentPath.startsWith('/books') ? 'active' : '' %>" href="/books">Library</a>
+    <a class="<%= currentPath === '/reviews' ? 'active' : '' %>" href="/reviews">Comments</a>
+    <a class="<%= currentPath === '/contact' ? 'active' : '' %>" href="/contact">Contact</a>
+  </nav>
+
+  <div class="header-actions">
+    <form class="quick-search" action="/books" method="GET">
+      <input type="search" name="search" placeholder="Tìm sách" aria-label="Tìm sách">
+      <button type="submit" aria-label="Tìm kiếm">⌕</button>
+    </form>
+    <a class="bag-link" href="/books" aria-label="Library">▢</a>
+    <% if (currentUser) { %>
+      <% if (currentUser.role === 'admin') { %>
+        <a class="small-button" href="/admin/dashboard">Admin</a>
+      <% } %>
+      <form action="/logout" method="POST">
+        <button class="small-button" type="submit">Log out</button>
+      </form>
+    <% } else { %>
+      <a class="small-button" href="/login">Log In</a>
+      <a class="small-button" href="/register">Sign Up</a>
+    <% } %>
+  </div>
+</header>
+<%- include('flash') %>

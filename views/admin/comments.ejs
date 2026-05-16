@@ -1,0 +1,23 @@
+<%- include('../partials/admin-header') %>
+<h1>Bình luận của người dùng</h1>
+<table class="admin-table">
+  <thead><tr><th>Sách</th><th>Người gửi</th><th>Email</th><th>Điểm</th><th>Nội dung</th><th>Thao tác</th></tr></thead>
+  <tbody>
+    <% comments.forEach(function(comment) { %>
+      <tr>
+        <td><%= comment.book_title %></td>
+        <td><%= comment.name %></td>
+        <td><%= comment.email %></td>
+        <td><%= comment.rating %></td>
+        <td><%= comment.content %></td>
+        <td>
+          <form action="/admin/comments/<%= comment.id %>/delete" method="POST" data-confirm="Bạn chắc chắn muốn xóa bình luận này?">
+            <button class="danger-button" type="submit">Xóa</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<%- include('../partials/pagination') %>
+<%- include('../partials/admin-footer') %>

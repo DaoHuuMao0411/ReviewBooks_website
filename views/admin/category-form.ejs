@@ -1,0 +1,11 @@
+<%- include('../partials/admin-header') %>
+<h1>Sửa category</h1>
+<p class="admin-note">Khi đổi tên category, các sách đang dùng category cũ sẽ được cập nhật sang tên mới.</p>
+<% if (error) { %><p class="form-error"><%= error %></p><% } %>
+<form class="admin-form compact-admin-form" action="/admin/categories/<%= category.id %>/edit" method="POST" data-validate-form data-confirm="Bạn chắc chắn muốn cập nhật category này? Các sách liên quan cũng sẽ bị ảnh hưởng.">
+  <label>Tên category
+    <input type="text" name="name" required minlength="2" maxlength="80" value="<%= category.name || '' %>">
+  </label>
+  <button type="submit">Lưu category</button>
+</form>
+<%- include('../partials/admin-footer') %>

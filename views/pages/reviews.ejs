@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+<main class="page-shell">
+  <section class="page-heading">
+    <p class="eyebrow">Comments</p>
+    <h1>Tất cả bình luận của người dùng</h1>
+    <p>Các bình luận được sắp xếp theo thời gian tạo, bình luận cũ nhất hiển thị trên cùng.</p>
+  </section>
+
+  <section class="review-timeline" aria-label="Danh sách bình luận người dùng">
+    <% if (!reviews.length) { %>
+      <article class="empty-state">
+        <h2>Chưa có bình luận nào</h2>
+        <p>Hãy đăng nhập, chọn một cuốn sách và gửi đánh giá đầu tiên.</p>
+        <a class="primary-link" href="/books">Xem thư viện sách</a>
+      </article>
+    <% } %>
+
+    <% reviews.forEach(function(review) { %>
+      <article class="review-list-card">
+        <a class="review-book-cover" href="/books/<%= review.book_id %>">
+          <img src="<%= review.book_cover_image || '/images/books/default-book.svg' %>" alt="Bìa sách <%= review.book_title %>">
+        </a>
+        <div class="review-list-body">
+          <div class="review-list-meta">
+            <span class="category-tag"><%= review.book_category %></span>
+            <time><%= new Date(review.created_at).toLocaleString('vi-VN') %></time>
+          </div>
+          <h2><a href="/books/<%= review.book_id %>"><%= review.book_title %></a></h2>
+          <p><strong>Tác giả:</strong> <%= review.book_author %></p>
+          <p><strong>Người bình luận:</strong> <%= review.name || review.username || 'Người dùng' %></p>
+          <p><strong>Email:</strong> <%= review.email %></p>
+          <p class="rating-line"><strong>Điểm đánh giá:</strong> <%= review.rating %>/5</p>
+          <p class="review-content"><strong>Nội dung bình luận:</strong> <%= review.content %></p>
+          <a class="text-link" href="/books/<%= review.book_id %>#reviews">Xem trong trang sách</a>
+        </div>
+      </article>
+    <% }) %>
+  </section>
+</main>
+<%- include('../partials/pagination') %>
+<%- include('../partials/footer') %>

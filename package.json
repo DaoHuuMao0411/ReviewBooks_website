@@ -1,0 +1,16 @@
+{
+  "name": "review-books-local",
+  "version": "1.1.0",
+  "description": "Local book review website using HTML, CSS, JavaScript, EJS, Express, and MySQL.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mysql2": "^3.11.0"
+  }
+}

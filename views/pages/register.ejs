@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+<main class="page-shell auth-page">
+  <h1>Đăng ký</h1>
+  <% if (error) { %><p class="form-error"><%= error %></p><% } %>
+  <form class="standard-form" action="/register" method="POST" data-validate-form>
+    <label>Username<input type="text" name="username" required minlength="3"></label>
+    <label>Email<input type="email" name="email" required></label>
+    <label>Password<input type="password" name="password" required minlength="6"></label>
+    <label>Confirm Password<input type="password" name="confirmPassword" required minlength="6"></label>
+    <button type="submit">Sign Up</button>
+  </form>
+</main>
+<%- include('../partials/footer') %>

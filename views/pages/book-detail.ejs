@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+<main class="page-shell">
+  <article class="book-detail">
+    <img class="book-cover-large" src="<%= book.cover_image || '/images/books/default-book.svg' %>" alt="Bìa sách <%= book.title %>">
+    <div>
+      <p class="category-tag"><%= book.category %></p>
+      <h1><%= book.title %></h1>
+      <p><strong>Tác giả:</strong> <%= book.author %></p>
+      <p class="rating-line">★ <%= rating.average_rating %> / 5 từ <%= rating.total %> đánh giá</p>
+      <p><%= book.description %></p>
+      <h2>Nội dung review</h2>
+      <p><%= book.review_content %></p>
+    </div>
+  </article>
+
+  <section id="reviews" class="review-panel">
+    <h2>Bình luận và đánh giá</h2>
+    <% if (error) { %><p class="form-error"><%= error %></p><% } %>
+
+    <% if (currentUser) { %>
+      <form class="review-form" action="/books/<%= book.id %>/comments" method="POST" data-validate-form>
+        <label>
+          Điểm đánh giá
+          <select name="rating" required>
+            <option value="5">5 - Rất hay</option>
+            <option value="4">4 - Hay</option>
+            <option value="3">3 - Bình thường</option>
+            <option value="2">2 - Chưa tốt</option>
+            <option value="1">1 - Không phù hợp</option>
+          </select>
+        </label>
+        <label>
+          Nội dung bình luận
+          <textarea name="content" rows="5" required minlength="5"></textarea>
+        </label>
+        <button type="submit">Gửi bình luận</button>
+      </form>
+    <% } else { %>
+      <p>Vui lòng <a href="/login?next=/books/<%= book.id %>">đăng nhập</a> để bình luận và đánh giá.</p>
+    <% } %>
+
+    <div class="comment-list">
+      <% comments.forEach(function(comment) { %>
+        <article class="comment-card">
+          <h3><%= comment.name || comment.username %></h3>
+          <p><strong>Email:</strong> <%= comment.email %></p>
+          <p><strong>Điểm đánh giá:</strong> <%= comment.rating %>/5</p>
+          <p><strong>Nội dung bình luận:</strong> <%= comment.content %></p>
+          <time><%= new Date(comment.created_at).toLocaleString('vi-VN') %></time>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+</main>
+<%- include('../partials/footer') %>

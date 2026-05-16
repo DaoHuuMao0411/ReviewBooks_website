@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+
+<main>
+  <section class="hero-section">
+    <div class="hero-copy">
+      <p class="eyebrow">Thư viện cộng đồng cho mượn sách miễn phí</p>
+      <h1>BOOK REVIEW PAGE</h1>
+      <p>
+        Chào mừng bạn đến với D Free - Thư viện sách độc đáo cho phép bạn mượn sách trực tuyến và trực tiếp tại thư viện.
+        Khám phá hàng ngàn đầu sách thuộc nhiều thể loại khác nhau và tận hưởng niềm đam mê đọc sách bất cứ lúc nào, bất cứ nơi đâu.
+      </p>
+      <a class="primary-link" href="/books">Khám phá thư viện</a>
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <h2>Giới thiệu về web</h2>
+    <p>Châm ngôn</p>
+    <p class="intro-quote">Một cuốn sách tốt là một người bạn trầm lặng nhưng bền bỉ.</p>
+  </section>
+
+  <section id="reviews-section" class="favorite-section">
+    <h2>Sách được ưa thích</h2>
+    <div class="favorite-grid">
+      <% books.slice(0, 6).forEach(function(book) { %>
+        <article class="book-card">
+          <a href="/books/<%= book.id %>">
+            <img src="<%= book.cover_image || '/images/books/default-book.svg' %>" alt="Bìa sách <%= book.title %>">
+          </a>
+          <div class="book-card-body">
+            <h3><a href="/books/<%= book.id %>"><%= book.title %></a></h3>
+            <p><%= book.author %></p>
+            <span>★ <%= book.average_rating %> · <%= book.comment_count %> nhận xét</span>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <section class="ad-popup" data-popup hidden>
+    <div class="ad-popup-card">
+      <button type="button" class="popup-close" data-popup-close aria-label="Đóng quảng cáo">×</button>
+      <img src="/images/books/default-book.svg" alt="Sách nổi bật">
+      <div>
+        <p class="eyebrow">Sách nổi bật hôm nay</p>
+        <h2>Đọc sách, viết review, chia sẻ tri thức</h2>
+        <p>Khám phá thư viện và để lại đánh giá cho cuốn sách bạn yêu thích.</p>
+        <a class="primary-link" href="/books">Xem thư viện</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

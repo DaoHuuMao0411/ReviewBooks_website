@@ -1,0 +1,27 @@
+<%- include('../partials/admin-header') %>
+<h1><%= mode === 'create' ? 'Thêm người dùng' : 'Sửa người dùng' %></h1>
+<% if (error) { %><p class="form-error"><%= error %></p><% } %>
+<form
+  class="admin-form" data-validate-form
+  action="<%= mode === 'create' ? '/admin/users/create' : '/admin/users/' + user.id + '/edit' %>"
+  method="POST"
+  <%= mode === 'edit' ? 'data-confirm="Bạn chắc chắn muốn cập nhật thông tin user này?"' : '' %>
+>
+  <label>Username
+    <input type="text" name="username" required minlength="3" maxlength="50" pattern="[a-zA-Z0-9_]+" value="<%= user.username || '' %>">
+  </label>
+  <label>Email
+    <input type="email" name="email" required maxlength="120" value="<%= user.email || '' %>">
+  </label>
+  <label>Mật khẩu <%= mode === 'edit' ? '(để trống nếu không đổi)' : '' %>
+    <input type="password" name="password" <%= mode === 'create' ? 'required' : '' %> minlength="6">
+  </label>
+  <label>Quyền
+    <select name="role">
+      <option value="user" <%= user.role === 'user' ? 'selected' : '' %>>user</option>
+      <option value="admin" <%= user.role === 'admin' ? 'selected' : '' %>>admin</option>
+    </select>
+  </label>
+  <button type="submit"><%= mode === 'create' ? 'Thêm user' : 'Lưu thay đổi' %></button>
+</form>
+<%- include('../partials/admin-footer') %>

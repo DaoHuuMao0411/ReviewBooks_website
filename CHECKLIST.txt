@@ -1,0 +1,121 @@
+REVIEW BOOKS LOCAL WEBSITE - RELEASE CHECKLIST v1.1.0
+=====================================================
+
+A. PACKAGE CONTENT
+[ ] app.js is included.
+[ ] package.json is included and version is 1.1.0.
+[ ] package-lock.json is included.
+[ ] README.md is included.
+[ ] CHECKLIST.txt is included.
+[ ] config/db.js is included.
+[ ] middleware/ is included.
+[ ] routes/ is included.
+[ ] views/ is included.
+[ ] public/css, public/js, public/images are included.
+[ ] sql/database.sql is included.
+[ ] node_modules/ is NOT included.
+[ ] sessions/ is NOT included.
+[ ] .env or personal secret files are NOT included.
+[ ] Old migration-only files are NOT included in this clean v1.1.0 package.
+
+B. LOCAL SETUP
+[ ] Node.js is installed.
+[ ] MySQL Server/MySQL Workbench local connection works.
+[ ] Database review_books is created/imported from sql/database.sql.
+[ ] config/db.js matches local MySQL username/password/port.
+[ ] npm install runs successfully.
+[ ] npm start runs successfully.
+[ ] Website opens at http://localhost:3000.
+
+C. AUTHENTICATION AND ROLES
+[ ] User can register with username, email, and password.
+[ ] User can log in.
+[ ] User can log out.
+[ ] Admin can log in.
+[ ] Normal user cannot access /admin routes.
+[ ] Admin can access /admin/dashboard.
+[ ] Deleted users are blocked on later requests.
+
+D. PUBLIC WEBSITE
+[ ] Home page displays correctly.
+[ ] Books page displays book list.
+[ ] Book detail page works with route /books/:id.
+[ ] Contact page contains introduction, contact information, and feedback form.
+[ ] /about redirects to /contact.
+[ ] Reviews page displays all comments/reviews with book information.
+[ ] Reviews are ordered from oldest to newest.
+[ ] Popup advertisement appears after 60 seconds if cookie is not set.
+[ ] Closing popup stores cookie and prevents repeated display.
+
+E. COMMENTS / REVIEWS
+[ ] Logged-in user can submit a comment/review on a book.
+[ ] Comment/review stores name, email, content, rating, book, and time.
+[ ] Book detail page displays name, email, content, rating, and time.
+[ ] /reviews page displays name, email, content, rating, and related book.
+[ ] Admin comments page displays name, email, content, rating, book, and time.
+[ ] Admin can delete comments.
+
+F. ADMIN MANAGEMENT
+[ ] Dashboard displays site statistics.
+[ ] Admin can add, edit, and delete books.
+[ ] Admin can add, edit, and delete users.
+[ ] Admin can add, edit, and delete admins.
+[ ] Admin can add, edit, and delete categories.
+[ ] Admin can view contacts.
+[ ] Admin edit/delete actions show confirmation popup.
+[ ] Add actions do not require confirmation popup.
+[ ] User online/offline status appears in user management.
+
+G. CATEGORIES
+[ ] Categories are stored in MySQL, not hard-coded in JavaScript.
+[ ] Admin category page exists.
+[ ] Book create/edit form uses select dropdown from existing categories.
+[ ] Server rejects invalid category values.
+[ ] Editing category updates affected books.
+[ ] Deleting category handles affected books safely.
+
+H. PAGINATION
+[ ] Pagination appears only when total items exceed one page.
+[ ] Pagination does not appear when there is no data.
+[ ] Pagination does not appear when there is only one page.
+[ ] Invalid high page numbers redirect/clamp to a valid page.
+[ ] /books pagination works.
+[ ] /reviews pagination works.
+[ ] /admin/books pagination works.
+[ ] /admin/users pagination works.
+[ ] /admin/comments pagination works.
+[ ] /admin/contacts pagination works.
+
+I. FORM VALIDATION AND MESSAGES
+[ ] Register form validates username, email, and password.
+[ ] Login form validates required fields.
+[ ] Contact form validates required fields and email when user is not logged in.
+[ ] Comment form validates content and rating.
+[ ] Admin book form validates title, author, category, and content fields.
+[ ] Admin user form validates username, email, password when needed, and role.
+[ ] Admin category form validates category name and duplicate names.
+[ ] Success messages are visible after successful actions.
+[ ] Error messages are visible after invalid actions.
+
+J. RESPONSIVE DESIGN
+[ ] Layout works below 800px.
+[ ] Layout works from 800px to 1199px.
+[ ] Layout works at 1200px and above.
+[ ] Book cards do not overflow on mobile.
+[ ] Admin tables remain usable on small screens.
+[ ] Header/menu does not overflow on small screens.
+
+K. NO-PENALTY CONSTRAINTS
+[ ] No Bootstrap.
+[ ] No Tailwind.
+[ ] No jQuery.
+[ ] No React/Vue/Angular frontend framework.
+[ ] No downloaded UI template.
+[ ] CSS is custom-written.
+[ ] Client-side JavaScript is custom-written.
+[ ] EJS views are custom-written.
+
+L. DEMO ACCOUNTS
+[ ] Admin account works: admin / admin123.
+[ ] User account works: reader / user123.
+[ ] Additional sample data exists for pagination testing.

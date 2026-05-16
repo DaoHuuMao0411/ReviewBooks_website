@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> | Admin</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="/js/admin.js" defer></script>
+</head>
+<body>
+<header class="admin-topbar">
+  <a href="/admin/dashboard">Admin Panel</a>
+  <nav>
+    <a href="/">Website</a>
+    <a href="/admin/books">Sách</a>
+    <a href="/admin/users">Users</a>
+    <a href="/admin/categories">Categories</a>
+    <a href="/admin/comments">Comments</a>
+    <a href="/admin/contacts">Contacts</a>
+  </nav>
+  <form action="/logout" method="POST"><button type="submit">Log out</button></form>
+</header>
+<main class="admin-shell">
+<%- include('flash') %>

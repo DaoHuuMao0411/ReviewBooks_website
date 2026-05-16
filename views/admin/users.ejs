@@ -1,0 +1,41 @@
+<%- include('../partials/admin-header') %>
+<div class="admin-title-row">
+  <h1>Danh sách người dùng</h1>
+  <a class="admin-button" href="/admin/users/create">Thêm user</a>
+</div>
+<table class="admin-table">
+  <thead>
+    <tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Trạng thái</th><th>Ngày tạo</th><th>Thao tác</th></tr>
+  </thead>
+  <tbody>
+    <% users.forEach(function(user) { %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td>
+          <% if (user.is_online) { %>
+            <span class="status-badge online">Online</span>
+          <% } else { %>
+            <span class="status-badge offline">Offline</span>
+          <% } %>
+          <% if (user.last_seen_at) { %>
+            <small class="last-seen">Lần cuối: <%= new Date(user.last_seen_at).toLocaleString('vi-VN') %></small>
+          <% } %>
+        </td>
+        <td><%= new Date(user.created_at).toLocaleString('vi-VN') %></td>
+        <td>
+          <div class="table-actions">
+            <a class="table-link" href="/admin/users/<%= user.id %>/edit">Sửa</a>
+            <form action="/admin/users/<%= user.id %>/delete" method="POST" data-confirm="Bạn chắc chắn muốn xóa tài khoản '<%= user.username %>' (<%= user.role %>)? Nếu tài khoản đang online, phiên của họ sẽ mất hiệu lực ở request kế tiếp. Bình luận cũ vẫn được giữ lại.">
+              <button type="submit" class="danger-button">Xóa</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<%- include('../partials/pagination') %>
+<%- include('../partials/admin-footer') %>
